@@ -9,7 +9,7 @@ gulp.task('lint', function(){
 
 gulp.task('start', function(){
   nodemon({
-    script: 'app.js',
+    script: './bin/www',
     ext: 'js html',
     tasks: ['lint'],
     env: { 'NODE_ENV': 'development' }
