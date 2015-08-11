@@ -1,9 +1,20 @@
 var index = require('./index');
-var catalog = require('./catalog');
-var catalogArtist = require('./catalogArtist');
+var artistCatalog = require('./artistCatalog');
 var residentArtist = require('./residentArtist');
 
 module.exports = function(app){
-  app.use('/', index);
-  app.use('/users', routes.users.getUser);
+  // Index
+  app.get('/', index.get);
+
+  // Admin - Catalog Routes
+  app.get('/admin/catalog', artistCatalog.admin.get);
+  app.post('/admin/catalog', artistCatalog.admin.post);
+  app.delete('/admin/catalog', artistCatalog.admin.delete);
+
+  // Admin - Resident Routes
+  app.get('/admin/resident', residentArtist.get);
+
+  // Catalog Routes
+  app.get('/catalog', artistCatalog.get);
+
 };

@@ -9,13 +9,10 @@
   // Fill producer seat 
   // Submit specific session request 
 // Join a session as a collaborator (max two)
+var mysql = require('mysql');
 
-var express = require('express');
-var router = express.Router();
-
-/* GET home page. */
-router.get('/admin/resident', function(req, res, next) {
-  res.render('views/resident_artist', { title: 'Express' });
-});
-
-module.exports = router;
+module.exports = {
+  get: function(req, res, next) {
+    res.render('views/resident_artist', { title: 'Express' });
+  }
+};

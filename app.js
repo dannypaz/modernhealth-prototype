@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var swig = require('swig');
 
 var app = express();
-var routes = require('./routes/routes.js')(app);
+
 
 // view engine setup
 app.engine('html', swig.renderFile);
@@ -23,6 +23,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

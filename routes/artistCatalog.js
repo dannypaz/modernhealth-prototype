@@ -9,11 +9,20 @@
 // Upload Tracks to Catalog  
 // minimum file requirements (.wav / 48x16)
 
-var express = require('express');
-var router = express.Router();
 
 module.exports = {
+  admin: {
+    get: function(req, res, next){
+      res.render('views/admin_catalog', { title: 'Express' });
+    },
+    post: function(req, res, next){
+      res.render('views/admin_catalog', { title: 'Express' });
+    },
+    delete: function(req, res, next){
+      res.render('views/admin_catalog', { title: 'Express' });
+    }
+  },
   get: function(req, res, next){
-    res.render('views/resident_artist', { title: 'Express' });
-  }
+    res.render('views/catalog', { title: 'Express' });
+  } 
 };
