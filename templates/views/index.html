@@ -1,12 +1,15 @@
 {% extends '../layouts/main.html' %}
 
-{% block title %}My Page{% endblock %}
+{% block title %}Assemble Sound{% endblock %}
 
 {% block head %}
   {% parent %}
 {% endblock %}
 
 {% block content %}
-<h1>{{title}}</h1>
-<p>Welcome to: {{title}}</p>
+<h1>Assemble Sound</h1>
+<ul>
+  <li>Resident Artist<a href="/admin/resident">></a></li>
+  <li>Catalog Artist<a href="/admin/catalog">></a></li>
+</ul> 
 {% endblock %}
