@@ -1,3 +1,6 @@
+// TODO
+// Change to Sequalize ORM
+
 var mysql = require('mysql');
 
 // These connection settings need to be changed
