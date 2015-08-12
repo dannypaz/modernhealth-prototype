@@ -9,11 +9,14 @@ var pool = mysql.createPool({
   password: 'password123'
 });
 
-var query = function(sql, callback){
+var query = function(sql, values, callback){
   pool.getConnection(function(err, connection){
-    if (err) console.log(err);
+    if (err){
+      console.log(err);
+      return callback(err);
+    }
 
-    connection.query(sql, function(err, rows, fields){
+    connection.query(sql, values, function(err, rows, fields){
       if (err) console.log(err);
       connection.release();
       callback(err, rows);
@@ -27,10 +30,18 @@ module.exports = {
       { username: 'dev', password: 'password123', firstName: 'Danny', lastName: 'Paz'}
     ]
     // Need to change for insert
-    var sql = 'SELECT * from users';
+    var sql = "";
+    var values = [];
     
-    // Run init
-    query(sql, callback);
+    for(var i=0; i<users.length;i++){
+      sql += "INSERT INTO users ('username', 'password', 'firstName', 'lastName') VALUES (?,?,?,?)";
+      values.push(users[i].username);
+      values.push(users[i].password);
+      values.push(users[i].firstName);
+      values.push(users[i].lastName);
+    }
+    
+    query(sql, values, callback);
   },
   // Break this up into insert, select, delete
   // and add limits
