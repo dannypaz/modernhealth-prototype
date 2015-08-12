@@ -21,16 +21,11 @@ module.exports = function(app){
   // Catalog Routes
   app.get('/catalog', artistCatalog.get);
 
-
-
-
-
   // Initial start of application
   app.get('/init', function(req, res){
     db.init(function(err, results){
-      if (err) throw err;
-
-      console.log('DB successfully initialized');
+      if (err) res.send('error');
+      res.send('success');
     });
   });
 

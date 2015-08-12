@@ -9,6 +9,18 @@ var pool = mysql.createPool({
   password: 'password123'
 });
 
+var query = function(sql, callback){
+  pool.getConnection(function(err, connection){
+    if (err) console.log(err);
+
+    connection.query(sql, function(err, rows, fields){
+      if (err) console.log(err);
+      connection.release();
+      callback(err, rows);
+    })
+  });
+};
+
 module.exports = {
   init: function(callback){
     var users = [
@@ -16,13 +28,11 @@ module.exports = {
     ]
     // Need to change for insert
     var sql = 'SELECT * from users';
-    pool.getConnection(function(err, connection){
-      if (err) throw err;
-
-      connection.query(sql, function(err, rows, fields){
-        connection.release();
-        callback(rows);
-      });
-    });
-  }
+    
+    // Run init
+    query(sql, callback);
+  },
+  // Break this up into insert, select, delete
+  // and add limits
+  query: query
 };
