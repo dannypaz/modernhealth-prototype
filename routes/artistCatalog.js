@@ -76,12 +76,15 @@ module.exports = {
       }else {
         res.send('Bad Request');
       }
+    },
+    delete: function(req, res, next){
+      console.log('artistsCatalog.delete!');
     }
   },
   get: function(req, res, next){
     db.query('SELECT * from catalog', [], function(err, rows){
       var locals = {
-        title: 'Here\'s All Your Data';
+        title: 'Here\'s All Your Data',
         data: rows
       };
       res.render('views/catalog', locals)

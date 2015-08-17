@@ -4,7 +4,7 @@ var residentArtist = require('./residentArtist');
 
 // For testing only
 var mysql = require('mysql');
-var config = require('../config/config');
+var db = require('../config/database');
 
 module.exports = function(app){
   // Index
