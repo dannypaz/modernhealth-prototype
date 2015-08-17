@@ -1,4 +1,4 @@
-var mysql = require('mysql');
+'use strict';
 
 module.exports = {
   get: function(req, res, next){

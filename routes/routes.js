@@ -1,3 +1,5 @@
+'use strict';
+
 var index = require('./index');
 var artistCatalog = require('./artistCatalog');
 var residentArtist = require('./residentArtist');

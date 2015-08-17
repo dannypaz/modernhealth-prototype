@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -23,6 +25,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/vendor/jquery', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
+app.use('/vendor/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));
 
 var routes = require('./routes/routes')(app);
 
@@ -54,7 +58,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('views/error', {
     message: err.message,
-    error: {}
+    error: err
   });
 });
 

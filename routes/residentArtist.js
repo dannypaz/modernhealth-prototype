@@ -1,3 +1,4 @@
+'use strict';
 // 1. Resident Artist Section (Private)
 
 // As an Assemble Resident artist I would like to....
@@ -13,6 +14,9 @@ var mysql = require('mysql');
 
 module.exports = {
   get: function(req, res, next) {
-    res.render('views/resident_artist', { title: 'Express' });
+    var locals = {
+      title: 'Express'
+    };
+    res.render('views/resident_artist', locals);
   }
 };

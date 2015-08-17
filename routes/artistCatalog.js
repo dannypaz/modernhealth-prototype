@@ -1,3 +1,4 @@
+'use strict';
 // As an Assemble Catalog artist I would like to....
 //
 // FOR MVP
@@ -36,10 +37,12 @@ module.exports = {
       var locals = {
         title: 'Express'
       };
-      res.render('views/admin_catalog', local);
+      res.render('views/admin_catalog', locals);
     },
     post: function(req, res, next){
-      if(req.files.pdf && req.body){
+      console.log('Received POST at admin/catalog');
+
+      if(req.files && req.body){
 
         // Upload PDF Information
         var tmpPath = req.files.pdf.path;
@@ -64,17 +67,25 @@ module.exports = {
                   ",'tracknumber','track','encoder') VALUES (?,?,?,?,?,?,?,?);";
 
         // Start file upload
-        uploadFileToServer(tmpPath, fileName, function(err){
-          if(err) throw err;
+        //uploadFileToServer(tmpPath, fileName, function(err){
+          //if(err) throw err;
 
           db.query(sql, values, function(err, rows){
             if(err) throw err;
-            res.redirect('/catalog', { success: true });
+            var locals = {
+              SUCCESS: true,
+              SUCCESS_MESSAGE: "Catalog and Track Inserted Successfully!"
+            };
+            res.render('views/admin_catalog', locals);
           })
-        });
+        //});
 
       }else {
-        res.send('Bad Request');
+        var locals = {
+          ERROR: true,
+          ERROR_MESSAGE: "Something happened.! Please try again."
+        };
+        res.render('views/admin_catalog', locals);
       }
     },
     delete: function(req, res, next){
