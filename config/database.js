@@ -2,6 +2,7 @@
 // Change to Sequalize ORM
 
 var mysql = require('mysql');
+var bcrypt = require('bcrypt');
 
 // These connection settings need to be changed
 // to process.ENV for production
@@ -25,6 +26,14 @@ var query = function(sql, values, callback){
       connection.release();
       callback(err, rows);
     })
+  });
+};
+
+var hashPassword = function(password, callback){
+  bcrypt.genSalt(10, function(err, salt){
+    bcrypt.hash(password, salt, function(err, hash){
+      callback(err, hash);
+    });
   });
 };
 
