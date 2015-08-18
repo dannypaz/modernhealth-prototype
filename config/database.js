@@ -29,9 +29,13 @@ var query = function(sql, values, callback){
   });
 };
 
-var hashPassword = function(password, callback){
+var generateHash = function(str, callback){
   bcrypt.genSalt(10, function(err, salt){
-    bcrypt.hash(password, salt, function(err, hash){
+    if (err) callback(err);
+
+    bcrypt.hash(str, salt, function(err, hash){
+      if (err) callback(err);
+
       callback(err, hash);
     });
   });
@@ -56,6 +60,8 @@ module.exports = {
     
     query(sql, values, callback);
   },
+  // Takes a string and callback
+  generateHash: generateHash,
   // Break this up into insert, select, delete
   // and add limits
   query: query
