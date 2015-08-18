@@ -1,3 +1,5 @@
+'use strict';
+
 // TODO
 // Change to Sequalize ORM
 
