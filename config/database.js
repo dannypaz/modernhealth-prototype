@@ -9,7 +9,8 @@ var mysql = require('mysql');
 var pool = mysql.createPool({
   host: 'localhost',
   user: 'dev',
-  password: 'password123'
+  password: 'password123',
+  database: 'utitily_app'
 });
 
 var query = function(sql, values, callback){
@@ -31,13 +32,13 @@ module.exports = {
   init: function(callback){
     var users = [
       { username: 'dev', password: 'password123', firstName: 'Danny', lastName: 'Paz'}
-    ]
-    // Need to change for insert
+    ];
+
     var sql = "";
     var values = [];
     
     for(var i=0; i<users.length;i++){
-      sql += "INSERT INTO users ('username', 'password', 'firstName', 'lastName') VALUES (?,?,?,?)";
+      sql += "INSERT INTO users ('username', 'password', 'first_name', 'last_name') VALUES (?,?,?,?);";
       values.push(users[i].username);
       values.push(users[i].password);
       values.push(users[i].firstName);

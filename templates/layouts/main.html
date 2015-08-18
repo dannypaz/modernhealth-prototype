@@ -21,12 +21,12 @@
         <strong>Success!</strong> {{ SUCCESS_MESSAGE }}
       </div>
     {% endif %}
-    {% if ERROR %}
+    {% if WARNING %}
       <div class="alert alert-danger alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <strong>Error!</strong> {{ ERROR_MESSAGE }}
+        <strong>Warning!</strong> {{ WARNING_MESSAGE }}
       </div>
     {% endif %}
   {% endblock %}
@@ -37,5 +37,6 @@
     <script src="../vendor/jquery/jquery.min.js" type="text/javascript"></script>
     <script src="../vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
   {% endblock %}
+  
 </body>
 </html>

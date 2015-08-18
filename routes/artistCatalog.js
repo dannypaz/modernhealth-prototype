@@ -1,4 +1,5 @@
 'use strict';
+
 // As an Assemble Catalog artist I would like to....
 //
 // FOR MVP
@@ -42,17 +43,17 @@ module.exports = {
     post: function(req, res, next){
       console.log('Received POST at admin/catalog');
 
-      if(req.files && req.body){
+      if(req.body){
 
         // Upload PDF Information
-        var tmpPath = req.files.pdf.path;
+        //var tmpFilePath = req.files.pdf.path;
         var fileName = req.body.fileName;
 
         // Example Req Data        
         // title: '', artist: '', album: '', year: '',
-        // tracknumber: '', track: '', encoder: ''
+        // tracknumber: '', genre: '', encoder: ''
         //
-        var metaData = req.body.metadata;
+        var metaData = req.body;
         var values = [
           fileName,
           metaData.title,
@@ -60,11 +61,11 @@ module.exports = {
           metaData.album,
           metaData.year,
           metaData.tracknumber,
-          metaData.track,
+          metaData.genre,
           metaData.encoder
         ];
         var sql = "INSERT INTO tracks ('filename','title','artist','album','year'" + 
-                  ",'tracknumber','track','encoder') VALUES (?,?,?,?,?,?,?,?);";
+                  ",'tracknumber','genre','encoder') VALUES (?,?,?,?,?,?,?,?);";
 
         // Start file upload
         //uploadFileToServer(tmpPath, fileName, function(err){
@@ -77,13 +78,13 @@ module.exports = {
               SUCCESS_MESSAGE: "Catalog and Track Inserted Successfully!"
             };
             res.render('views/admin_catalog', locals);
-          })
+          });
         //});
 
       }else {
         var locals = {
-          ERROR: true,
-          ERROR_MESSAGE: "Something happened.! Please try again."
+          WARNING: true,
+          WARNING_MESSAGE: "The information you provided was missing/incorrect. Please try again."
         };
         res.render('views/admin_catalog', locals);
       }
