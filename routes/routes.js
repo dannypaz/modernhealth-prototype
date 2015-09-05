@@ -4,7 +4,6 @@ var index = require('./index');
 var artistCatalog = require('./artistCatalog');
 var residentArtist = require('./residentArtist');
 
-// For testing only
 var mysql = require('mysql');
 var db = require('../config/database');
 

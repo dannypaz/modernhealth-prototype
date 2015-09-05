@@ -11,7 +11,6 @@
 // Electronically sign paperwork without downloading
 // NOTE: Should look into HelloSign (https://www.hellosign.com/api)
 // Upload Tracks to Catalog (minimum file requirements (.wav / 48x16)
-//
 
 var db = require('../config/database');
 var fs = require('fs');
